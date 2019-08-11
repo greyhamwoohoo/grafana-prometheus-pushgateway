@@ -1,0 +1,44 @@
+#
+# References: 
+# 1. https://gist.github.com/brunosimioni/2bcbb91edd4fbaeb8cccbbf490c5685c
+#
+version: '3.0'
+
+services:
+
+  #
+  # Grafana comes with Prometheus Data Source built in. Nothing to add. 
+  #
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    volumes:
+      - ./grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/dashboards:/etc/grafana/dashboards
+    environment:
+      - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+    ports:
+      - "5000:3000"
+
+  pushgateway:
+    image: prom/pushgateway:latest
+    container_name: pushgateway
+    ports:
+      - "9091:9091"
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus_data:/etc/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention=200h'
+      - '--web.enable-lifecycle'
+    ports:
+      - "9090:9090"      

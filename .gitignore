@@ -1,0 +1,9 @@
+# Start by ignoring everything
+grafana_data/*
+prometheus_data/*
+
+# We need three pre-canned configuration files:
+# Prometheus: to scrape Push Gateway
+# Grafana: Config.ini (which points to the provisioning / initialization data)
+!prometheus_data/prometheus.yml
+!grafana_data/config.ini
