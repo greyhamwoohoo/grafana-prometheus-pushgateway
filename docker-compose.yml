@@ -10,7 +10,7 @@ services:
   # Grafana comes with Prometheus Data Source built in. Nothing to add. 
   #
   grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana:6.3.2
     container_name: grafana
     volumes:
       - ./grafana_data:/var/lib/grafana
@@ -24,13 +24,13 @@ services:
       - "5000:3000"
 
   pushgateway:
-    image: prom/pushgateway:latest
+    image: prom/pushgateway:v0.9.1
     container_name: pushgateway
     ports:
       - "9091:9091"
 
   prometheus:
-    image: prom/prometheus:latest
+    image: prom/prometheus:v2.11.1
     container_name: prometheus
     volumes:
       - ./prometheus_data:/etc/prometheus
