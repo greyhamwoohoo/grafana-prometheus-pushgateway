@@ -1,7 +1,9 @@
 # grafana-prometheus-pushgateway
-An end-to-end example of Prometheus and Push Gateway working together rendering continuously pushed metric data in Grafana. 
+An end-to-end example of Grafana, Prometheus and Push Gateway working together using docker-compose.yml and precanned Dashboards. 
 
-This contrived example (and seed data generation included) will simulate continuouslky pushing fake test results from two environments to Push Gateway. The result looks something like this:
+This contrived example will simulate pushing fake test results from two environments to Push Gateway. Those metrics are scraped by Prometheus and rendered by Grafana. 
+
+The resulting Dashboard shows the current status of the metric and a historical status:
 
 ![Grafana Test Dashboard](docs/images/grafana-status.png?raw=true "Grafana Test Dashboard")
 
