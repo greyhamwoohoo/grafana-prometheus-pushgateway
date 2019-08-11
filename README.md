@@ -29,7 +29,7 @@ The following services will be started and are preconfigured in the following wa
 | Service | Description | URI | 
 | ------- | --- | ---- |
 | Grafana | A Dashboard is included showing Pass/Fail; and historical trends. The graphs are rendered by connecting to the Prometheus Data Source | http://localhost:5000 |
-| Prometheus | The configuration has been augmented to scrape Push Gateway as a source and can be found in prometheus_data/prometheus.yml | http://localhost:9090 |
+| Prometheus | The configuration has been augmented to scrape Push Gateway as a source and can be found in prometheus/prometheus.yml | http://localhost:9090 |
 | Push Gateway | The various Seed scripts will write directly to this endpoint to publish Metrics. The Metrics pushed here will be scraped by Prometheus. | http://localhost:9091 |
 
 

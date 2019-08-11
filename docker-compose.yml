@@ -14,6 +14,7 @@ services:
     container_name: grafana
     volumes:
       - ./grafana_data:/var/lib/grafana
+      - ./grafana/config.ini:/var/lib/grafana/config.ini
       - ./grafana/provisioning:/etc/grafana/provisioning
       - ./grafana/dashboards:/etc/grafana/dashboards
     environment:
@@ -33,12 +34,10 @@ services:
     image: prom/prometheus:v2.11.1
     container_name: prometheus
     volumes:
-      - ./prometheus_data:/etc/prometheus
+      - ./prometheus:/etc/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
-      - '--web.console.libraries=/etc/prometheus/console_libraries'
-      - '--web.console.templates=/etc/prometheus/consoles'
       - '--storage.tsdb.retention=200h'
       - '--web.enable-lifecycle'
     ports:
