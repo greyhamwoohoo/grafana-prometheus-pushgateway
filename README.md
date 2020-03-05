@@ -42,9 +42,17 @@ To run the Seed Script:
 PowerShell -File .\Seed.ps1
 ```
 
+## Stale Data
+To see the difference between the current time and the last time a metric was pushed, use something like the following Prometheus Query:
+
+```
+time() - push_time_seconds{instance="${Environment}"}
+```
+
 
 ## References
 | Description | Link |
 | ----------- | ---- |
 | How to configure Grafana with Predefined Dashboards (and Datasources) | https://ops.tips/blog/initialize-grafana-with-preconfigured-dashboards/ |
 | Bootstrapping GPP (a bit out of date, but got me up and running quickly) | https://github.com/cirocosta/sample-grafana |
+| Alerting on 'stale' Pushgateway metrics | https://github.com/prometheus/pushgateway/blob/master/README.md |
